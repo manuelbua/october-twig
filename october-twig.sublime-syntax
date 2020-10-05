@@ -100,7 +100,7 @@ contexts:
         #
         # PHP
         #
-        - match: '<\?(?i:php|=)?(?![^?]*\?>)'
+        - match: '<\?(?i:php|\=)?(?![^?]*\?>)'
           scope: punctuation.section.embedded.begin.php
           push:
             - meta_content_scope: source.php
@@ -112,17 +112,17 @@ contexts:
                 0: punctuation.section.embedded.end.php
               pop: true
 
-        - match: '<\?(?i:php|=)?'
+        - match: '<\?(?i:php|=).*?(?=\?>)'
           scope: punctuation.section.embedded.begin.php
           push:
             - meta_content_scope: source.php.october
             - meta_scope: meta.embedded.line.october.php
             - include: 'scope:source.php'
           with_prototype:
-          - match: (?=\?>)(\?>)
-            captures:
-              0: punctuation.section.embedded.end.php
-            pop: true
+            - match: (?=\?>)(\?>)
+              captures:
+                0: punctuation.section.embedded.end.php
+              pop: true
 
   #
   # Twig includes
